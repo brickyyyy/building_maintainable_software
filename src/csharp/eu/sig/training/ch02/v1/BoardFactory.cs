@@ -11,16 +11,14 @@ namespace eu.sig.training.ch02.v1
 
             Board board = new Board(grid);
 
-            int width = board.Width;
-            int height = board.Height;
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < board.Width; x++)
             {
-                for (int y = 0; y < height; y++)
+                for (int y = 0; y < board.Height; y++)
                 {
                     Square square = grid[x, y];
                     foreach (Direction dir in Direction.Values)
                     {
-                        SetLink(square, dir, x, y, width, height, grid);
+                        SetLink(square, dir, x, y, board.Width, board.Height, grid);
                     }
                 }
             }
