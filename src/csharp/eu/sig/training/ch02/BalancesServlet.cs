@@ -56,15 +56,7 @@ namespace eu.sig.training.ch02
                     rowNum++;
                     DataRow results = (DataRow)dataTable.Rows.GetEnumerator().Current;
                     CheckAccountLength(results, totalBalance, resp);
-                    
-                    if (rowNum == dataTable.Rows.Count)
-                    {
-                        resp.Write("],\n");
-                    }
-                    else
-                    {
-                        resp.Write(",");
-                    }
+                    WriteResponse(rowNum, dataTable, resp);
                 }
                 resp.Write($"\"total\":{totalBalance}}}\n");
          }
@@ -84,5 +76,16 @@ namespace eu.sig.training.ch02
                         resp.Write($"{{\"{results["account"]}\":{results["balance"]}}}");
                     }
          }
+        private void WriteResponse(int rowNum, DataTable dataTable, HttpResponse resp)
+        {
+            if (rowNum == dataTable.Rows.Count)
+            {
+                resp.Write("],\n");
+            }
+            else
+            {
+                resp.Write(",");
+            }
+        }
     } 
 }
